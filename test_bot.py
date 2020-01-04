@@ -4,8 +4,11 @@ import time
 import asyncio
 import requests
 import urllib.request
+import random
+import sys
 
-token = 'NjAzNzE1NDY4MTA4NDk2OTEy.Xg_mdg.0Y-7NOZEtnZxTkdJK4yXRXoZV5M'
+token = 'NjAzNzE1NDY4MTA4NDk2OTEy.XhDkDA.2Fv08obuCagfKqx_8clfCPos85w'
+
 
 client = discord.Client()
 
@@ -28,30 +31,30 @@ async def on_message(message):
     msgc = message.content
     msgg = message.channel
 
-    if (str(msgg) == "science-fiction") and (msgc == "hbdsaLDVJBV") :
-
-
+    if (str(msgg) == "bot-test") and (msgc == "hbdsaLDVJBV"):
         counter = 0
-        async for elem in message.channel.history(oldest_first=True):
-            destination = 'G:\\code\\python\\pic\\' + 'pic' + str(counter) + '.png'
 
+        async for elem in message.channel.history(oldest_first=True):
+            destination = 'F:\\code\\python\\bot\\pic\\' + 'pic' + str(random.randint(1, sys.maxsize)) + '.png'
             if (len(elem.attachments) > 0):
 
-                _attachments = elem.attachments[0]
-                image = _attachments.url
-                print(image)
                 for i in range(len(elem.attachments)):
+                    _attachments = elem.attachments[i]
+                    image = _attachments.url
+                    print(image)
+
+
+
                     with open(destination, 'wb') as handle:
+                        print(destination)
                         response = requests.get(image, stream=True)
                         if not response.ok:
                             print(response)
                         for block in response.iter_content(1024):
                             if not block:
-                                break
+                                    break
                             handle.write(block)
-
-                    counter += 1
-            if elem.author.bot:
-                await elem.delete()
+                    handle.close()
+                counter += 1
 
 client.run(token)
