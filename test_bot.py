@@ -31,10 +31,10 @@ async def on_message(message):
     msgc = message.content
     msgg = message.channel
 
-    if (str(msgg) == "bot-test") and (msgc == "hbdsaLDVJBV"):
+    if (str(msgg) == "bots-and-bits") and (msgc == "hbdsaLDVJBV"):
         counter = 0
-
-        async for elem in message.channel.history(oldest_first=True):
+        guild = "science-fiction"
+        async for elem in guild.history(oldest_first=True):
             destination = 'F:\\code\\python\\bot\\pic\\' + 'pic' + str(random.randint(1, sys.maxsize)) + '.png'
             if (len(elem.attachments) > 0):
 
