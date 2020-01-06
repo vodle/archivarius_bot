@@ -7,7 +7,7 @@ import urllib.request
 import random
 import sys
 
-token = 'NjAzNzE1NDY4MTA4NDk2OTEy.XhDkDA.2Fv08obuCagfKqx_8clfCPos85w'
+token = 'NjAzNzE1NDY4MTA4NDk2OTEy.XhDuJA.kS1z41nLgWUEJkvNFhri9Y9j32Y'
 
 
 client = discord.Client()
@@ -31,10 +31,12 @@ async def on_message(message):
     msgc = message.content
     msgg = message.channel
 
-    if (str(msgg) == "bots-and-bits") and (msgc == "hbdsaLDVJBV"):
+    if (str(msgg) == "science-fiction") and (msgc == "<!!dump!!>"):
         counter = 0
+        _msg = await message.channel.fetch_message('663353270940598272')
+
         guild = "science-fiction"
-        async for elem in guild.history(oldest_first=True):
+        async for elem in message.channel.history(limit=1500, oldest_first=True, after=_msg):
             destination = 'F:\\code\\python\\bot\\pic\\' + 'pic' + str(random.randint(1, sys.maxsize)) + '.png'
             if (len(elem.attachments) > 0):
 
